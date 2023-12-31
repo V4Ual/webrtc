@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+.app-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+}
+
+.stream-container {
+  flex: 1;
+}
+
+.chat-container {
+  flex: 1;
+  margin-left: 20px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

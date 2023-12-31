@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useState } from 'react'
 import { useSocket } from '../context/SocketProvider'
 import ReactPlayer from 'react-player'
 import peer from '../service/peer'
+import ChatScreen from './ChatScreen'
 
 
 
@@ -105,16 +106,34 @@ const Room = () => {
 
 
     return (
-        <div>
-            <h1>hello</h1>
-            <h4>{remoteSocketId ? 'Connected' : "Not one in Connect"}</h4>
-            {myStream && <button onClick={sendStream}>send stream</button>}
-            {remoteSocketId && <button onClick={handleCallUser}>Call</button>}
-            {myStream && <> <h1>my stream</h1><ReactPlayer playing height="360px" width="400px" url={myStream} /></>}
-            {remoteStream && <> <h1>remote stream</h1><ReactPlayer playing height="360px" width="400px" url={remoteStream} /></>}
+        <div className="app-container">
+            <div className="stream-container">
+                <h1>hello</h1>
+                <h4>{remoteSocketId ? 'Connected' : 'Not one in Connect'}</h4>
+                {myStream && <button onClick={sendStream}>Send Stream</button>}
+                {remoteSocketId && <button onClick={handleCallUser}>Call</button>}
+                {myStream && (
+                    <>
+                        <h1>My Stream</h1>
+                        <ReactPlayer playing height="360px" width="400px" url={myStream} />
+                    </>
+                )}
+                {remoteStream && (
+                    <>
+                        <h1>Remote Stream</h1>
+                        <ReactPlayer playing height="360px" width="400px" url={remoteStream} />
+                    </>
+                )}
+            </div>
+            <div className="chat-container">
+                <ChatScreen />
+            </div>
 
         </div>
-    )
+    );
+
+
+
 }
 
 export default Room
